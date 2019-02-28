@@ -132,8 +132,9 @@ public class MineralDetection extends LinearOpMode {
                             {
                                 continue;
                             }
-                            report = recognition.getLabel() + " " +
-                                String.format ("%3d", (long) recognition.getLeft());
+                            report = String.format(recognition.getLabel(), "%15s"," " ) + " " +
+                                String.format ("X %4d, Y %4d. Confid %.2f", (long) recognition.getLeft(),
+                                        (long) recognition.getTop(), recognition.getConfidence());
                             telemetry.addLine(report);
 
                             if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {

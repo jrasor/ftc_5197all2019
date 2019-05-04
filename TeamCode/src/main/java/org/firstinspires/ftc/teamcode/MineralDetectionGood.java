@@ -29,6 +29,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -50,9 +51,9 @@ import java.util.List;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@TeleOp(name = "Mineral Detection Simple", group = "Concept")
-//@Disabled
-public class MineralDetection2 extends LinearOpMode {
+@TeleOp(name = "Mineral Detection Backup", group = "Concept")
+@Disabled
+public class MineralDetectionGood extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
 
@@ -75,8 +76,16 @@ public class MineralDetection2 extends LinearOpMode {
             "zUWClcasxi6Nty7SUvV+gaq3CzpKVtjKk+2EwV6ibIc0V47LAeB0lDGsGkSzuJ+" +
             "93/Ulpoj+Lwr/jbI2mu/Bs2W7U9mw73CMxvDix9o1FxyPNablla4W5C5lUDm0j2" +
             "lW5gsUNOhgvlWKQ+eCu9IBp53WbW5nfNzhXPaDDh/IlBbZuAMIJuMDEHI5PVLKT9L";
-
+    /**
+     * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
+     * localization engine.
+     */
     private VuforiaLocalizer vuforia;
+
+    /**
+     * {@link #tfod} is the variable we will use to store our instance of the Tensor Flow Object
+     * Detection engine.
+     */
     private TFObjectDetector tfod;
 
     @Override
@@ -91,13 +100,13 @@ public class MineralDetection2 extends LinearOpMode {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
         }
 
-        /* Wait for the game to begin */
-        telemetry.addData(">", "Press Play to start tracking.");
+        /** Wait for the game to begin */
+        telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
         waitForStart();
 
         if (opModeIsActive()) {
-            /* Activate Tensor Flow Object Detection. */
+            /** Activate Tensor Flow Object Detection. */
             if (tfod != null) {
                 tfod.activate();
             }
@@ -124,13 +133,13 @@ public class MineralDetection2 extends LinearOpMode {
                             }
                         }
                         if (goldMineralX != -1) {
-                            telemetry.addData("Gold at ", goldMineralX);
+                                telemetry.addData("Gold at ", goldMineralX);
+                            }
                         }
+                      telemetry.update();
                     }
-                    telemetry.update();
                 }
             }
-        }
 
 
         if (tfod != null) {
